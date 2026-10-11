@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jumia Careers — Find & Apply for Jobs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#f68b1e;
+  --orange-600:#e07b12;
+  --orange-050:#fff5ea;
+  --ink:#141414;
+  --text:#3b3b3b;
+  --muted:#7b7b7b;
+  --line:#ececec;
+  --bg:#f6f7f9;
+  --white:#fff;
+  --green:#16a34a;
+  --green-050:#e9f9ef;
+  --red:#dc2626;
+  --radius:16px;
+  --shadow-sm:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.05);
+  --shadow-md:0 10px 28px rgba(16,24,40,.09);
+  --shadow-lg:0 30px 70px rgba(16,24,40,.22);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+[hidden]{display:none!important}
+img{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+a{text-decoration:none;color:inherit}
+.container{width:min(1160px,100% - 40px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:6px}
+
+/* ============ NAV ============ */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;color:var(--ink)}
+.logo-mark{
+  width:34px;height:34px;border-radius:10px;flex:none;
+  background:linear-gradient(135deg,var(--orange),#ffb457);
+  color:#fff;display:grid;place-items:center;font-size:18px;font-weight:800;
+  box-shadow:0 6px 14px rgba(246,139,30,.35);
+}
+.logo em{font-style:normal;color:var(--orange)}
+.nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:500;color:#555}
+.nav-links a{position:relative;padding:4px 0;transition:color .18s}
+.nav-links a:hover{color:var(--orange)}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--orange);
+  transition:width .22s;border-radius:2px;
+}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:12px}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:11px;font-weight:600;font-size:14.5px;padding:12px 20px;
+  transition:transform .15s,box-shadow .2s,background .2s,color .2s,border-color .2s;
+  white-space:nowrap;
+}
+.btn:active{transform:scale(.975)}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 6px 16px rgba(246,139,30,.32)}
+.btn-primary:hover{background:var(--orange-600);box-shadow:0 10px 22px rgba(246,139,30,.4)}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed;box-shadow:none}
+.btn-outline{border:1.5px solid var(--line);background:#fff;color:var(--ink)}
+.btn-outline:hover{border-color:var(--orange);color:var(--orange)}
+.btn-ghost{color:var(--ink);font-weight:600;font-size:14.5px;padding:10px 14px;border-radius:10px}
+.btn-ghost:hover{background:#f3f3f3}
+.btn-block{width:100%}
+.btn-sm{padding:10px 16px;font-size:14px;border-radius:10px}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(155deg,#131313 0%,#221a11 50%,#3a2408 100%);
+  padding:76px 0 92px;
+}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;pointer-events:none}
+.hero::before{
+  width:600px;height:600px;top:-260px;right:-160px;
+  background:radial-gradient(circle,rgba(246,139,30,.42),transparent 65%);
+}
+.hero::after{
+  width:420px;height:420px;bottom:-240px;left:-140px;
+  background:radial-gradient(circle,rgba(246,139,30,.18),transparent 65%);
+}
+.hero-inner{position:relative;z-index:2;max-width:760px}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(246,139,30,.14);border:1px solid rgba(246,139,30,.35);
+  color:#ffc98a;font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;
+  margin-bottom:22px;
+}
+.pill .dot-live{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 4px rgba(61,220,132,.16)}
+.hero h1{font-size:clamp(32px,5.2vw,52px);line-height:1.1;letter-spacing:-1.2px;font-weight:800;margin-bottom:18px}
+.hero h1 span{
+  background:linear-gradient(100deg,var(--orange),#ffcb7d);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{font-size:clamp(15px,1.7vw,17.5px);color:#c9c9c9;max-width:600px;margin-bottom:32px}
+.searchbar{
+  display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;
+  padding:8px;max-width:620px;box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+.searchbar .s-icon{padding-left:12px;font-size:16px;opacity:.5}
+.searchbar input{
+  flex:1;border:none;outline:none;background:transparent;color:var(--ink);
+  font-size:15px;padding:12px 6px;min-width:0;
+}
+.searchbar input::placeholder{color:#9a9a9a}
+.stats{display:flex;flex-wrap:wrap;gap:38px;margin-top:44px}
+.stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.5px}
+.stat span{font-size:13.5px;color:#9c9c9c}
+
+/* ============ SECTION ============ */
+.section{padding:64px 0;scroll-margin-top:88px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.section-head h2{font-size:clamp(22px,3vw,29px);letter-spacing:-.7px;color:var(--ink);font-weight:800}
+.section-head p{color:var(--muted);font-size:14.5px;margin-top:6px}
+
+/* ============ FILTERS ============ */
+.filters{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:12px;
+  box-shadow:var(--shadow-sm);margin-bottom:28px;
+}
+.field{position:relative;display:flex;align-items:center}
+.field .f-icon{position:absolute;left:14px;font-size:15px;opacity:.45;pointer-events:none}
+.field input,.field select{
+  width:100%;padding:13px 14px 13px 40px;border:1.5px solid var(--line);
+  border-radius:11px;background:#fbfbfb;outline:none;font-size:14.5px;
+  transition:border-color .18s,background .18s;appearance:none;
+}
+.field select{
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237b7b7b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
+}
+.field input:focus,.field select:focus{border-color:var(--orange);background:#fff}
+
+/* ============ JOB GRID ============ */
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.job-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;gap:15px;
+  transition:transform .22s,box-shadow .22s,border-color .22s;
+  animation:fadeUp .4s both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.job-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:#f8d4a6}
+.job-top{display:flex;gap:13px;align-items:flex-start}
+.job-logo{
+  width:48px;height:48px;flex:none;border-radius:13px;display:grid;place-items:center;
+  font-size:22px;background:var(--orange-050);border:1px solid #ffe3c4;
+}
+.job-title{font-size:16.5px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.2px}
+.job-company{font-size:13px;color:var(--muted);margin-top:3px}
+.hot{
+  margin-left:auto;flex:none;font-size:11px;font-weight:700;letter-spacing:.3px;
+  background:#ffe9e9;color:#e04343;padding:4px 9px;border-radius:999px;text-transform:uppercase;
+}
+.job-meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font-size:12.5px;font-weight:500;color:#5c5c5c;background:#f4f5f7;
+  padding:6px 11px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;
+}
+.job-salary{font-size:14px;font-weight:700;color:var(--ink)}
+.job-salary span{font-weight:500;color:var(--muted);font-size:12.5px}
+.job-foot{
+  margin-top:auto;padding-top:15px;border-top:1px dashed var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.fee-tag{
+  display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;
+  color:var(--orange-600);background:var(--orange-050);padding:7px 11px;border-radius:9px;
+  border:1px solid #ffe3c4;
+}
+.empty{
+  grid-column:1/-1;text-align:center;padding:70px 20px;background:#fff;
+  border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);
+}
+.empty b{display:block;font-size:17px;color:var(--ink);margin-bottom:6px}
+
+/* ============ HOW IT WORKS ============ */
+.how{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.how-card{padding:26px 22px;border-radius:var(--radius);background:#fbfbfc;border:1px solid var(--line)}
+.how-num{
+  width:38px;height:38px;border-radius:11px;background:var(--orange);color:#fff;
+  display:grid;place-items:center;font-weight:800;font-size:15px;margin-bottom:15px;
+  box-shadow:0 8px 18px rgba(246,139,30,.3);
+}
+.how-card h3{font-size:16px;color:var(--ink);margin-bottom:7px;font-weight:700}
+.how-card p{font-size:14px;color:var(--muted)}
+
+/* ============ FOOTER ============ */
+.footer{background:#131313;color:#9a9a9a;padding:52px 0 26px;font-size:14px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;margin-bottom:38px}
+.footer h4{color:#fff;font-size:14px;margin-bottom:15px;font-weight:700}
+.footer ul{list-style:none;display:grid;gap:10px}
+.footer a:hover{color:var(--orange)}
+.footer .logo{color:#fff;margin-bottom:14px}
+.footer-bottom{border-top:1px solid #262626;padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px}
+
+/* ============ MODAL ============ */
+.overlay{
+  position:fixed;inset:0;z-index:100;background:rgba(15,15,15,.62);
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  animation:fadeIn .2s both;overflow-y:auto;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  position:relative;width:min(580px,100%);background:#fff;border-radius:22px;
+  box-shadow:var(--shadow-lg);max-height:92vh;overflow-y:auto;
+  animation:popIn .28s cubic-bezier(.2,.9,.3,1.2) both;
+}
+@keyframes popIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.modal::-webkit-scrollbar{width:8px}
+.modal::-webkit-scrollbar-thumb{background:#ddd;border-radius:8px}
+.modal-close{
+  position:absolute;top:14px;right:14px;z-index:5;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;background:#f2f2f2;color:#555;font-size:14px;transition:.18s;
+}
+.modal-close:hover{background:#e6e6e6;color:#000;transform:rotate(90deg)}
+
+.modal-head{padding:26px 26px 0}
+.job-summary{
+  display:flex;gap:13px;align-items:center;background:#fbfbfc;
+  border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:22px;
+}
+.job-summary .job-logo{width:44px;height:44px;font-size:20px}
+
+/* Steps */
+.steps{display:flex;align-items:center;gap:6px;margin-bottom:24px}
+.step{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#a5a5a5}
+.step .dot{
+  width:28px;height:28px;border-radius:50%;background:#f0f0f0;color:#9a9a9a;
+  display:grid;place-items:center;font-size:12.5px;font-weight:700;transition:.25s;flex:none;
+}
+.step.active{color:var(--ink)}
+.step.active .dot{background:var(--orange);color:#fff;box-shadow:0 0 0 4px rgba(246,139,30,.16)}
+.step.done .dot{background:var(--green-050);color:var(--green)}
+.step.done{color:var(--green)}
+.step-line{flex:1;height:2px;background:#f0f0f0;border-radius:2px;min-width:14px}
+
+.modal-body{padding:0 26px 28px}
+.panel{animation:fadeUp .3s both}
+.panel h3{font-size:19px;color:var(--ink);letter-spacing:-.4px;margin-bottom:5px;font-weight:800}
+.panel .sub{font-size:13.5px;color:var(--muted);margin-bottom:20px}
+
+/* Form */
+.form-grid{display:grid;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.input-group{display:grid;gap:7px}
+.input-group label{font-size:13px;font-weight:600;color:#4a4a4a}
+.input-group label .req{color:var(--orange)}
+.input-group input,.input-group textarea,.input-group select{
+  width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;
+  background:#fbfbfc;outline:none;font-size:14.5px;transition:.18s;
+}
+.input-group textarea{resize:vertical;min-height:88px}
+.input-group input:focus,.input-group textarea:focus,.input-group select:focus{
+  border-color:var(--orange);background:#fff;box-shadow:0 0 0 4px rgba(246,139,30,.1);
+}
+.input-group input.err,.input-group textarea.err{border-color:var(--red);background:#fff6f6}
+.err-msg{font-size:12px;color:var(--red);display:none}
+.input-group.invalid .err-msg{display:block}
+
+.file-drop{
+  border:1.5px dashed #d8d8d8;border-radius:11px;padding:18px;text-align:center;
+  background:#fbfbfc;cursor:pointer;transition:.18s;font-size:13.5px;color:var(--muted);
+}
+.file-drop:hover{border-color:var(--orange);background:var(--orange-050);color:var(--orange-600)}
+.file-drop input{display:none}
+.file-drop b{color:var(--ink);display:block;font-size:14px;margin-bottom:2px}
+
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);line-height:1.5}
+.check input{width:17px;height:17px;flex:none;margin-top:2px;accent-color:var(--orange)}
+
+/* Payment */
+.pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.pm{
+  border:1.5px solid var(--line);border-radius:12px;padding:13px 8px;text-align:center;
+  font-size:13px;font-weight:600;color:#5c5c5c;background:#fbfbfc;transition:.18s;
+}
+.pm span{display:block;font-size:19px;margin-bottom:4px}
+.pm:hover{border-color:#f8d4a6}
+.pm.active{border-color:var(--orange);background:var(--orange-050);color:var(--orange-600);box-shadow:0 0 0 3px rgba(246,139,30,.1)}
+
+.summary{
+  background:#fbfbfc;border:1px solid var(--line);border-radius:13px;padding:15px;margin:18px 0;
+  display:grid;gap:11px;font-size:14px;
+}
+.summary-row{display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
+.summary-row b{color:var(--ink);font-weight:600}
+.summary-total{
+  border-top:1px dashed #ddd;padding-top:11px;display:flex;justify-content:space-between;
+  font-size:16px;font-weight:800;color:var(--ink);
+}
+.summary-total span:last-child{color:var(--orange-600)}
+
+.bank-box{background:var(--orange-050);border:1px solid #ffe3c4;border-radius:12px;padding:15px;display:grid;gap:9px;font-size:13.5px}
+.bank-box .row{display:flex;justify-content:space-between;gap:12px}
+.bank-box .row b{color:var(--ink);letter-spacing:.3px}
+.bank-note{font-size:12.5px;color:var(--muted);margin-top:4px}
+
+.secure-note{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  font-size:12.5px;color:var(--muted);margin-top:13px;
+}
+
+/* Success */
+.success{text-align:center;padding:14px 0 4px}
+.success-icon{
+  width:76px;height:76px;border-radius:50%;background:var(--green-050);color:var(--green);
+  display:grid;place-items:center;font-size:36px;margin:0 auto 20px;
+  animation:pop .45s cubic-bezier(.2,.9,.3,1.4) both;
+}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.success h3{margin-bottom:8px}
+.success p{color:var(--muted);font-size:14.5px;max-width:400px;margin:0 auto 20px}
+.ref-box{
+  background:#fbfbfc;border:1px dashed #d8d8d8;border-radius:13px;padding:15px;margin-bottom:22px;
+}
+.ref-box small{font-size:12px;color:var(--muted);display:block;margin-bottom:5px;letter-spacing:.4px;text-transform:uppercase}
+.ref-box b{font-size:19px;color:var(--ink);letter-spacing:1.6px;font-weight:800}
+
+/* Spinner */
+.spinner{
+  width:17px;height:17px;border:2.5px solid rgba(255,255,255,.4);
+  border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .nav-links{display:none}
+}
+@media (max-width:760px){
+  .filters{grid-template-columns:1fr}
+  .jobs-grid{grid-template-columns:1fr}
+  .hero{padding:56px 0 68px}
+  .stats{gap:26px;margin-top:34px}
+  .stat b{font-size:22px}
+  .searchbar{flex-direction:column;padding:10px;gap:10px}
+  .searchbar .s-icon{display:none}
+  .searchbar input{padding:12px 14px;width:100%;text-align:left}
+  .searchbar .btn{width:100%}
+  .section{padding:48px 0}
+  .form-row{grid-template-columns:1fr}
+  .pay-methods{grid-template-columns:1fr;gap:8px}
+  .pm{display:flex;align-items:center;gap:10px;text-align:left;padding:13px 15px}
+  .pm span{margin-bottom:0}
+  .modal-head{padding:20px 18px 0}
+  .modal-body{padding:0 18px 22px}
+  .modal{border-radius:18px}
+  .step span:not(.dot){display:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+@media (max-width:420px){
+  .job-foot{flex-direction:column;align-items:stretch}
+  .job-foot .btn{width:100%}
+  .fee-tag{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">J</span>
+      <span>jumia<em>careers</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#jobs">Browse Jobs</a>
+      <a href="#how">How It Works</a>
+      <a href="#footer">Support</a>
+    </nav>
+    <div class="nav-right">
+      <button class="btn btn-ghost">Sign in</button>
+      <a href="#jobs" class="btn btn-primary btn-sm">Find a Job</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="pill"><span class="dot-live"></span> 120+ open roles across Africa</span>
+    <h1>Build your career at <span>Jumia</span></h1>
+    <p>Join the team powering e-commerce across the continent. Discover roles in engineering, operations, marketing and more — apply in minutes.</p>
+    <div class="searchbar">
+      <span class="s-icon">🔍</span>
+      <input type="text" id="heroSearch" placeholder="Search job title, skill or keyword…" aria-label="Search jobs">
+      <button class="btn btn-primary" id="heroSearchBtn">Search Jobs</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>120+</b><span>Open positions</span></div>
+      <div class="stat"><b>11</b><span>African countries</span></div>
+      <div class="stat"><b>4.6/5</b><span>Employee rating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOBS ============ -->
+<main class="section container" id="jobs">
+  <div class="section-head">
+    <div>
+      <h2>Open Positions</h2>
+      <p id="resultCount">Loading roles…</p>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="field">
+      <span class="f-icon">🔍</span>
+      <input type="text" id="filterSearch" placeholder="Search by title or keyword">
+    </div>
+    <div class="field">
+      <span class="f-icon">🗂️</span>
+      <select id="filterDept" aria-label="Filter by department">
+        <option value="all">All Departments</option>
+      </select>
+    </div>
+    <div class="field">
+      <span class="f-icon">📍</span>
+      <select id="filterLoc" aria-label="Filter by location">
+        <option value="all">All Locations</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="jobs-grid" id="jobsGrid"></div>
+</main>
+
+<!-- ========
